@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, Subscriber, Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { PictureModel } from 'src/assets/models/picturesModel';
 
 @Component({
   selector: 'app-carrousel',
@@ -8,18 +10,19 @@ import { interval, Subscriber, Subscription } from 'rxjs';
 })
 export class CarrouselComponent implements OnInit {
 
-  public slideIndex;
-  public slides;
-  public timer = null;
-  public count = 0;
+  public slideIndex: number;
+  public slides: HTMLCollectionOf<any>;
+  public count: number = 0;
   public time$: Subscription;
+  public pictures1: PictureModel[];
+  public pictures: PictureModel[];
 
-  constructor() { }
+
+  constructor(private httpService: HttpClient) { }
 
   ngOnInit() {
-    this.initGallery();
+    this.getPhotos();
   }
-
 
   initGallery() {
     this.slideIndex = 0;
@@ -55,7 +58,8 @@ export class CarrouselComponent implements OnInit {
   }
 
   setTimer() {
-   this.time$ = interval(2000).subscribe((val) => {
+    // need Unsubscribe, built OnDestroy
+    this.time$ = interval(2000).subscribe((val) => {
       this.slideIndex++;
       this.moveSlide(this.slideIndex);
     });
@@ -67,6 +71,20 @@ export class CarrouselComponent implements OnInit {
 
   playSlider() {
     this.setTimer();
+  }
+
+
+  getPhotos() {
+    // need Unsubscribe, built OnDestroy or change to promise
+    this.httpService.get<PictureModel[]>('http://localhost:8080/home').subscribe(
+      (data) => {
+        this.pictures = data;
+        // Improve this code, find better way
+        // this.pictures1 = pics.slice(0, 4);
+        // this.pictures2 = pics.slice(4, pics.length);
+        this.initGallery();
+      }
+    );
   }
 
 }
