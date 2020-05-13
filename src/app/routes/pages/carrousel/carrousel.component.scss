@@ -4,7 +4,7 @@ html,body{
 }
 .carrouselContainer{
     width: 100%;
-    height: 150px;
+    height: 350px;
     max-width: 1000px;
     margin: auto;
     user-select: none;
@@ -25,17 +25,17 @@ html,body{
 }
 .carrouselContainer .slideShowContainer .imageHolder img{
     width: 100%;
-    height: 100%;
+    height: 250px;
 }
-
-.carrouselContainer:hover{
-    // background: #000000a8;
-    // cursor: pointer;
+@media (max-width: 600px) {
+.carrouselContainer .slideShowContainer .imageHolder img {
+    height: 150px;
+}
 }
 
 .carrouselContainer .moveLeftCurrentSlide{
     animation-name: moveLeftCurrent;
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
     animation-timing-function: linear;
     animation-fill-mode:forwards;
 }
@@ -48,11 +48,9 @@ html,body{
 
 .carrouselContainer .moveLeftCurrentSlide:hover{
     animation-play-state:paused;
-
 }
 .carrouselContainer .moveLeftNextSlide:hover{
     animation-play-state:paused;
-
 }
 
 .col {
@@ -61,6 +59,18 @@ html,body{
 }
 .row {
     margin: 5px;
+}
+
+.imageName {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.imageSize {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @keyframes moveLeftCurrent {

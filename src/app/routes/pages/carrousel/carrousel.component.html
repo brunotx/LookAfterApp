@@ -1,35 +1,48 @@
-<!-- <div class="carrouselContainer" (mouseover)="pauseSlider()" (mouseout)="playSlider()">
+<div class="carrouselContainer" (mouseover)="pauseSlider()" (mouseout)="playSlider()">
   <div class="slideShowContainer">
     <div class="imageHolder">
-      <img src="../../../../assets/img/bg1.jpg">
+      <div class="row">
+        <div class="col" *ngFor="let pic of pictures | slice:0:4; let i=index">
+          <img src="{{pic.url}}">
+          <span  class="imageName text-center">{{pic.name}}</span>
+          <span class="imageSize text-center">{{pic.size}}</span>
+        </div>
+      </div>
     </div>
     <div class="imageHolder">
-      <img src="../../../../assets/img/bg3.jpg">
-    </div>
-    <div class="imageHolder">
-      <img src="../../../../assets/img/bg4.jpg">
-    </div>
-    <div class="imageHolder">
-      <img src="../../../../assets/img/bg5.jpg">
+      <div class="row">
+        <div class="col" *ngFor="let pic of pictures | slice:4:8; let i=index">
+          <img src="{{pic.url}}">
+          <span class="imageName text-center">{{pic.name}}</span>
+          <span class="imageSize text-center">{{pic.size}}</span>
+        </div>
+      </div>
     </div>
   </div>
-</div> -->
+</div>
 
-<div class="carrouselContainer" (mouseover)="pauseSlider()" (mouseout)="playSlider()">
+
+
+
+<!-- <div class="carrouselContainer" (mouseover)="pauseSlider()" (mouseout)="playSlider()">
   <div class="slideShowContainer">
     <div class="imageHolder">
       <div class="row">
         <div class="col">
           <img src="../../../../assets/img/bg1.jpg">
+          <span>name</span>
         </div>
         <div class="col">
           <img src="../../../../assets/img/bg3.jpg">
+          <span>name</span>
         </div>
         <div class="col">
           <img src="../../../../assets/img/bg4.jpg">
+          <span>name</span>
         </div>
         <div class="col">
           <img src="../../../../assets/img/bg5.jpg">
+          <span>name</span>
         </div>
       </div>
     </div>
@@ -37,27 +50,20 @@
       <div class="row">
         <div class="col">
           <img src="../../../../assets/img/bg8.jpg">
+          <span>name</span>
         </div>
         <div class="col">
           <img src="../../../../assets/img/bg2.jpg">
+          <span>name</span>
         </div>
         <div class="col">
           <img src="../../../../assets/img/bg7.jpg">
+          <span>name</span>
         </div>
         <div class="col">
           <img src="../../../../assets/img/bg6.jpg">
+          <span>name</span>
         </div>
       </div>
     </div>
-  </div>
-
-<!-- 
-<div id="slidercontainer">
-  <div id="css3slider">
-    <img src="../../../../assets/img/bg1.jpg">
-    <img src="../../../../assets/img/bg3.jpg">
-    <img src="../../../../assets/img/bg4.jpg">
-    <img src="../../../../assets/img/bg5.jpg">
-  </div>
-</div> -->
-
+  </div>  -->
