@@ -8,10 +8,9 @@ import { interval, Subscriber, Subscription } from 'rxjs';
 })
 export class CarrouselComponent implements OnInit {
 
-  public slideIndex;
-  public slides;
-  public timer = null;
-  public count = 0;
+  public slideIndex: number;
+  public slides: HTMLCollectionOf<any>;
+  public count: number = 0;
   public time$: Subscription;
 
   constructor() { }
@@ -20,10 +19,10 @@ export class CarrouselComponent implements OnInit {
     this.initGallery();
   }
 
-
   initGallery() {
     this.slideIndex = 0;
     this.slides = document.getElementsByClassName('imageHolder');
+    console.log(this.slides);
     this.slides[this.slideIndex].style.opacity = 1;
     this.moveSlide(this.slideIndex);
     this.setTimer();
@@ -55,7 +54,7 @@ export class CarrouselComponent implements OnInit {
   }
 
   setTimer() {
-   this.time$ = interval(2000).subscribe((val) => {
+    this.time$ = interval(2000).subscribe((val) => {
       this.slideIndex++;
       this.moveSlide(this.slideIndex);
     });
