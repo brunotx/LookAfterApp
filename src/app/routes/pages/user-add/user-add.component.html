@@ -46,7 +46,7 @@
         <span class="text-danger" *ngIf="userAddForm.controls.phone.errors && 
             userAddForm.controls.phone.errors.minlength">
           Must have 9 numeric digits</span>
-          <span class="text-danger" *ngIf="userAddForm.controls.phone.errors && 
+        <span class="text-danger" *ngIf="userAddForm.controls.phone.errors && 
             userAddForm.controls.phone.errors.maxlength">
           Must have 9 numeric digits</span>
       </div>
@@ -63,7 +63,7 @@
     </div>
   </div>
   <div class="col-md-3 ml-auto mb-3 text-right">
-    <button type="button" (click)="submitValues()" class="btn btn-primary" disabled="formGroup.invalid">
+    <button type="button" (click)="submitValues()" class="btn btn-primary" [disabled]="userAddForm.invalid">
       Create User
     </button>
   </div>

@@ -53,6 +53,7 @@ export class CarrouselComponent implements OnInit {
       this.slides[this.slideIndex].className = 'imageHolder';
       this.slides[this.slideIndex].style.opacity = 0;
     }
+    if (current === undefined || next === undefined) { return; }
     current.classList.add(moveSlideAnimClass.forCurrent);
     next.classList.add(moveSlideAnimClass.forNext);
   }
@@ -76,7 +77,7 @@ export class CarrouselComponent implements OnInit {
 
   getPhotos() {
     // need Unsubscribe, built OnDestroy or change to promise
-    this.httpService.get<PictureModel[]>('http://localhost:8080/home').subscribe(
+    this.httpService.get<PictureModel[]>('http://localhost:8080/home', {responseType: 'json'}).subscribe(
       (data) => {
         this.pictures = data;
         this.initGallery();
