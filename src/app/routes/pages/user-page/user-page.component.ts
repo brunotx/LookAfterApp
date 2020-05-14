@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-user-page',
@@ -10,14 +11,24 @@ import { ActivatedRoute } from '@angular/router';
 export class UserPageComponent implements OnInit {
 
   public userId: String;
+  public currentUser: any;
 
-  constructor(private httpService: HttpClient, private route: ActivatedRoute ) { }
+  constructor(
+    private httpService: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.userId = this.route.snapshot.params.id;
-    this.httpService.get('http://localhost:8080/user/' + this.userId, {responseType: 'json'}).subscribe(
-      (data) => {console.log(data); }
-    );
+
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.currentUser);
+  }
+
+  logout() {
+    this.currentUser = {};
+    localStorage.setItem('currentUser', this.currentUser);
+    this.router.navigateByUrl('home/');
   }
 
 }

@@ -1,5 +1,8 @@
 <div class="card card-default">
   <div class="card-body" >
+    <div class="alert alert-danger" role="alert" *ngIf="errorLogin">
+      The email address or password is incorrect. Please retry...
+    </div>
     <form [formGroup]="loginForm">
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>

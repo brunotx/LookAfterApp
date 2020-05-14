@@ -63,13 +63,6 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-const nunjucks = require("nunjucks");
-nunjucks.configure('./', {
-    express: app,
-    noCache: true,
-});
-
 app.use(cors());
 
 app.get('*', (req, res, next) => {
@@ -109,14 +102,14 @@ app.post('/home', (req, res, next) => {
 
 
 
-app.get('/user/:id', (req, res) => {
+app.get('/user/:id', async (req, res) => {
 
     const id_username = req.params.id;
     const users = [];
     const User = Parse.Object.extend('User');
     const query = new Parse.Query(User);
     query.equalTo('objectId', id_username);
-    query.find().then(
+    await query.find().then(
         (result) => {
             for (let i = 0; i < result.length; i++) {
                 const element = result[i];
@@ -129,9 +122,12 @@ app.get('/user/:id', (req, res) => {
                 }
                 users.push(user);
             }
-            res.send(JSON.stringify(users))
         }
-    )
+    );
+    console.log(users);
+    // res.writeHead(304);
+    // res.write(users);
+    // res.json('mandou!!!')
 });
 
 app.listen(PORT, () => {

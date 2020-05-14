@@ -14,6 +14,7 @@ export class UserAddComponent implements OnInit {
 
   public userAddForm: FormGroup;
   public previousValues: any;
+  public users = [];
   public headers = new HttpHeaders({
     'Content-Type': 'application/json'
   });
@@ -24,6 +25,7 @@ export class UserAddComponent implements OnInit {
     private httpService: HttpClient) { }
 
   ngOnInit() {
+    this.users = JSON.parse(localStorage.getItem('users'));
 
     this.userAddFormService.init(this.previousValues);
     this.userAddFormService.userAddForm$.subscribe(
@@ -34,11 +36,13 @@ export class UserAddComponent implements OnInit {
   submitValues() {
     const formValues = this.userAddForm.value;
     const id = formValues.id;
-    const data =  JSON.stringify(formValues);
+    const data = JSON.stringify(formValues);
 
-    this.httpService.post<any>('http://localhost:8080/home', data, {headers: this.headers}).subscribe(
+    this.httpService.post<any>('http://localhost:8080/home', data, { headers: this.headers }).subscribe(
       (user) => {
-        console.log(user);
+        this.users.push(user);
+        localStorage.setItem('users', JSON.stringify(this.users));
+        localStorage.setItem('currentUser', JSON.stringify(user));
         this.router.navigateByUrl('user/' + user.objectId);
         this.bsModalRef.hide();
       }
