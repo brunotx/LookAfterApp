@@ -6,19 +6,26 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './routes/pages/home/home.component';
 import { CarrouselComponent } from './routes/pages/carrousel/carrousel.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserAddComponent } from './routes/pages/user-add/user-add.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CarrouselComponent
+    CarrouselComponent,
+    UserAddComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    ModalModule.forRoot()
   ],
   providers: [],
+  entryComponents: [UserAddComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
