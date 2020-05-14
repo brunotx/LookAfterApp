@@ -5,7 +5,66 @@
   </button>
 </div>
 <div class="card card-default">
-  <div class="card-body" *ngIf="dataHistory">
-
+  <div class="card-body" [formGroup]="userAddForm">
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label"
+        [ngClass]="{'text-danger': userAddForm.controls.fullName.invalid}">Full Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputFullName3" formControlName="fullName"
+          [ngClass]="{'is-invalid': userAddForm.controls.fullName.invalid}">
+        <span class="text-danger" *ngIf="userAddForm.controls.fullName.errors &&
+          userAddForm.controls.fullName.errors.required">
+          This field is required</span>
+        <span class="text-danger" *ngIf="userAddForm.controls.fullName.errors && 
+            userAddForm.controls.fullName.errors.minlength">
+          Min 3 characters</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label"
+        [ngClass]="{'text-danger': userAddForm.controls.email.invalid}">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" formControlName="email"
+          [ngClass]="{'is-invalid': userAddForm.controls.email.invalid}">
+        <span class="text-danger" *ngIf="userAddForm.controls.email.errors &&
+          userAddForm.controls.email.errors.required">
+          This field is required</span>
+        <span class="text-danger" *ngIf="userAddForm.controls.email.errors && 
+            userAddForm.controls.email.errors.email">
+          Email must have a @ and a dot</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label"
+        [ngClass]="{'text-danger': userAddForm.controls.phone.invalid}">Phone</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputPhone3" formControlName="phone"
+          [ngClass]="{'is-invalid': userAddForm.controls.phone.invalid}">
+        <span class="text-danger" *ngIf="userAddForm.controls.phone.errors &&
+          userAddForm.controls.phone.errors.required">
+          This field is required</span>
+        <span class="text-danger" *ngIf="userAddForm.controls.phone.errors && 
+            userAddForm.controls.phone.errors.minlength">
+          Must have 9 numeric digits</span>
+          <span class="text-danger" *ngIf="userAddForm.controls.phone.errors && 
+            userAddForm.controls.phone.errors.maxlength">
+          Must have 9 numeric digits</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label"
+        [ngClass]="{'text-danger': userAddForm.controls.password.invalid}">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" formControlName="password"
+          [ngClass]="{'is-invalid': userAddForm.controls.password.invalid}">
+        <span class="text-danger" *ngIf="userAddForm.controls.password.invalid">
+          This field is required</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 ml-auto mb-3 text-right">
+    <button type="button" (click)="submitValues()" class="btn btn-primary" disabled="formGroup.invalid">
+      Create User
+    </button>
   </div>
 </div>

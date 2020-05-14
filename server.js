@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
 const PORT = process.env.PORT || 8080;
@@ -50,14 +51,14 @@ const infoDiapers = [
 app.use(express.static(__dirname + '/dist/lookAfterApp'));
 
 app.get('/*', (req, res, next) => {
-    res.sendFile(__dirname + '/dist/lookAfterApp/index.html');
+    res.sendFile(path.join(__dirname + '/dist/lookAfterApp/index.html'));
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
 app.get('/home', (req, res) => {
-    res.json(infoDiapers)
+    res.json(infoDiapers);
 });
 
 app.listen(PORT, () => {

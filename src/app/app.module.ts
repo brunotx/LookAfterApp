@@ -8,6 +8,7 @@ import { CarrouselComponent } from './routes/pages/carrousel/carrousel.component
 import { HttpClientModule } from '@angular/common/http';
 import { UserAddComponent } from './routes/pages/user-add/user-add.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     ModalModule.forRoot()
   ],
   providers: [],
