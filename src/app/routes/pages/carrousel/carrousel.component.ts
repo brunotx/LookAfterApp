@@ -79,9 +79,6 @@ export class CarrouselComponent implements OnInit {
     this.httpService.get<PictureModel[]>('http://localhost:8080/home').subscribe(
       (data) => {
         this.pictures = data;
-        // Improve this code, find better way
-        // this.pictures1 = pics.slice(0, 4);
-        // this.pictures2 = pics.slice(4, pics.length);
         this.initGallery();
       }
     );
