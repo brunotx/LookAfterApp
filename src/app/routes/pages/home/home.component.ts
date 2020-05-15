@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService, ModalOptions, BsModalRef } from 'ngx-bootstrap/modal';
 import { UserAddComponent } from '../user-add/user-add.component';
 import { LoginComponent } from '../login/login.component';
-// import { faFacebook } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-home',
@@ -13,7 +11,6 @@ import { LoginComponent } from '../login/login.component';
 export class HomeComponent implements OnInit {
 
   public bsModalRef: BsModalRef;
-  // public faFacebook = faFacebook;
 
   constructor(private modalService: BsModalService) { }
 

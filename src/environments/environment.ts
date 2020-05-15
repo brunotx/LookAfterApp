@@ -4,10 +4,7 @@
 
 export const environment = {
   production: false,
-  PARSE_APP_ID: 'vYiSVg6tcTpEsYinWJXP5WzRQAETNsaE7QPFz8sT',
-  PARSE_JS_KEY: 'BdwOcGioi8wCzxH2htHBWDxODRZ4SjBDCw7D1sSD',
-  serverURL: 'https://parseapi.back4app.com'
-};
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

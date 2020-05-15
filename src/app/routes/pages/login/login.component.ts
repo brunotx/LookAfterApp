@@ -1,35 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginFormService } from './form/loginForm.service';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { UsersModel } from '../../../../assets/models/usersModel';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   public loginForm: FormGroup;
-  public getAllUsers = [];
-  public currentUser;
+  public getAllUsers: UsersModel[] = [];
+  public currentUser: UsersModel;
   public errorLogin: boolean = false;
+  public userForm_: Subscription;
 
   constructor(private loginFormService: LoginFormService,
     private router: Router,
     private bsModalRef: BsModalRef) { }
 
+
+
   ngOnInit() {
     this.loginFormService.init();
-    this.loginFormService.loginForm$.subscribe(
+    this.userForm_  = this.loginFormService.loginForm$.subscribe(
       (form) => {
         this.loginForm = form;
       }
     );
 
     this.getAllUsers = JSON.parse(localStorage.getItem('users'));
+  }
 
+  ngOnDestroy(){
+    if (this.userForm_ !== undefined) { this.userForm_.unsubscribe(); }
   }
 
   submitValues() {

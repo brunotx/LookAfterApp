@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { identifierModuleUrl } from '@angular/compiler';
+import { UsersModel } from '../../../../assets/models/usersModel';
+
 
 @Component({
   selector: 'app-user-page',
@@ -11,7 +12,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 export class UserPageComponent implements OnInit {
 
   public userId: String;
-  public currentUser: any;
+  public currentUser: UsersModel;
 
   constructor(
     private httpService: HttpClient,
@@ -20,14 +21,17 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.route.snapshot.params.id;
+    if (this.userId === undefined || this.userId === null || this.userId === 'undefined') {
+      this.router.navigateByUrl('home/');
+    }
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.currentUser);
   }
 
   logout() {
-    this.currentUser = {};
-    localStorage.setItem('currentUser', this.currentUser);
+    this.currentUser = null;
+    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
     this.router.navigateByUrl('home/');
   }
 

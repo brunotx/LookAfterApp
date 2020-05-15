@@ -96,6 +96,7 @@ app.post('/home', (req, res, next) => {
         (error) => {
             if (typeof document !== 'undefined') document.write(`Error while creating ParseObject: ${JSON.stringify(error)}`);
             console.error('Error while creating ParseObject: ', error);
+            return res.send(error);
         }
     );
 })

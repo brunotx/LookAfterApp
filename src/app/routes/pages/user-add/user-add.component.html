@@ -6,6 +6,9 @@
 </div>
 <div class="card card-default">
   <div class="card-body" [formGroup]="userAddForm">
+    <div class="alert alert-danger" role="alert" *ngIf="errorAddUser">
+     {{errorMsg}}
+    </div>
     <div class="form-group row">
       <label for="inputEmail3" class="col-sm-2 col-form-label"
         [ngClass]="{'text-danger': userAddForm.controls.fullName.invalid}">Full Name</label>
