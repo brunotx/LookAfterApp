@@ -1,0 +1,22 @@
+<div class="row" *ngIf="currentUser !== undefined">
+  <div class="col-8">
+    <img src="../../../../assets/img/picUser.jpg">
+  </div>
+  <div class="col-4 align-self-center text-center">
+    <div class="mb-5">
+      <h4>
+        {{currentUser.fullName}}
+      </h4>
+      <h4>
+        {{currentUser.createdAt | date : 'longDate'}}
+      </h4>
+    </div>
+
+    <span>
+      Online Shopping will be available soon.
+    </span>
+    <div>
+      <button type="button" class="btn btn-warning mt-5" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>

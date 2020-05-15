@@ -8,6 +8,7 @@ export class UserAddForm {
     email = new FormControl();
     phone = new FormControl();
     password = new FormControl();
+    date = new FormControl();
 
     constructor(startupValues: any) {
 
@@ -18,6 +19,7 @@ export class UserAddForm {
 
         if (startupValues === undefined) {
             this.id.setValue(Guid.create().toString());
+            this.date.setValue(new Date());
             return;
         }
         for (const prop in startupValues) {

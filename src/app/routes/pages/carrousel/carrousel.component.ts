@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { interval, Subscriber, Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { PictureModel } from 'src/assets/models/picturesModel';
@@ -8,7 +8,7 @@ import { PictureModel } from 'src/assets/models/picturesModel';
   templateUrl: './carrousel.component.html',
   styleUrls: ['./carrousel.component.scss']
 })
-export class CarrouselComponent implements OnInit {
+export class CarrouselComponent implements OnInit, OnDestroy {
 
   public slideIndex: number;
   public slides: HTMLCollectionOf<any>;
@@ -16,12 +16,18 @@ export class CarrouselComponent implements OnInit {
   public time$: Subscription;
   public pictures1: PictureModel[];
   public pictures: PictureModel[];
+  public getPhotosService_: Subscription;
 
 
   constructor(private httpService: HttpClient) { }
 
+
   ngOnInit() {
     this.getPhotos();
+  }
+
+  ngOnDestroy() {
+    if (this.getPhotosService_ !== undefined) { this.getPhotosService_.unsubscribe(); }
   }
 
   initGallery() {
@@ -53,6 +59,7 @@ export class CarrouselComponent implements OnInit {
       this.slides[this.slideIndex].className = 'imageHolder';
       this.slides[this.slideIndex].style.opacity = 0;
     }
+    if (current === undefined || next === undefined) { return; }
     current.classList.add(moveSlideAnimClass.forCurrent);
     next.classList.add(moveSlideAnimClass.forNext);
   }
@@ -66,7 +73,7 @@ export class CarrouselComponent implements OnInit {
   }
 
   pauseSlider() {
-    this.time$.unsubscribe();
+    if (this.time$ !== undefined) { this.time$.unsubscribe(); }
   }
 
   playSlider() {
@@ -75,8 +82,7 @@ export class CarrouselComponent implements OnInit {
 
 
   getPhotos() {
-    // need Unsubscribe, built OnDestroy or change to promise
-    this.httpService.get<PictureModel[]>('http://localhost:8080/home').subscribe(
+    this.getPhotosService_ = this.httpService.get<PictureModel[]>('http://localhost:8080/home', { responseType: 'json' }).subscribe(
       (data) => {
         this.pictures = data;
         this.initGallery();

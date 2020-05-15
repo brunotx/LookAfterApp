@@ -1,27 +1,46 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-transparent">
+  <a class="navbar-brand" href="#">Look After</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://www.facebook.com/" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://www.instagram.com/" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://www.youtube.com/" target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a>
       </li>
     </ul>
   </div>
   <div>
-    <button type="button" class="btn btn-primary" (click)="openModal()">Create User</button>
+    <button type="button" class="btn btn-light mr-2" (click)="openLogin()">Login</button>
+  </div>
+  <div>
+    <button type="button" class="btn btn-warning ml-2" (click)="openModal()">Create User</button>
   </div>
 </nav>
 <app-carrousel></app-carrousel>
+
+<div class="content-center">
+  <h1 class="presentation-title text-center">Be welcome to our website, here you will find the best products for your
+    need! We have the best quality for the best price.</h1>
+  <div class="credits mt-5 text-center">
+    <span class="copyright">
+      <i class="fas fa-phone mr-2"></i>1-971-diaper
+    </span>
+    <span class="copyright">
+      <i class="far fa-envelope ml-3 mr-2"></i>confort@lookafter.com
+    </span>
+  </div>
+</div>
