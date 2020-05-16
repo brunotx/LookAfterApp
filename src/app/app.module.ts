@@ -11,7 +11,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './routes/pages/login/login.component';
 import { UserPageComponent } from './routes/pages/user-page/user-page.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -28,7 +27,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    FontAwesomeModule,
     ModalModule.forRoot()
   ],
   providers: [],

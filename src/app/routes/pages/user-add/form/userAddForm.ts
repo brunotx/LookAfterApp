@@ -1,5 +1,4 @@
 import { FormControl, Validators } from '@angular/forms';
-import { Guid } from 'guid-typescript';
 
 export class UserAddForm {
 
@@ -18,7 +17,6 @@ export class UserAddForm {
         this.phone.setValidators(Validators.compose([Validators.required, Validators.minLength(9), Validators.maxLength(9)]));
 
         if (startupValues === undefined) {
-            this.id.setValue(Guid.create().toString());
             this.date.setValue(new Date());
             return;
         }
